@@ -2,6 +2,5 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs/Mineswiper/FileContentIndex/29dded64-a2e0-4bb0-8100-cb124e5032c4.vsidx
-/.vs/Mineswiper/FileContentIndex/3730a434-f12d-4b8b-ab7c-67ff55eda4df.vsidx
-/.vs/Mineswiper/FileContentIndex/537b2668-acfc-41e2-9733-311ec4d2c0d7.vsidx
+
+*.vsidx
