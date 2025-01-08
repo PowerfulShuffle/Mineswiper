@@ -1,0 +1,17 @@
+C:\Users\Drake\source\repos\Mineswiper\bin\Debug\net9.0-windows\Mineswiper.exe
+C:\Users\Drake\source\repos\Mineswiper\bin\Debug\net9.0-windows\Mineswiper.deps.json
+C:\Users\Drake\source\repos\Mineswiper\bin\Debug\net9.0-windows\Mineswiper.runtimeconfig.json
+C:\Users\Drake\source\repos\Mineswiper\bin\Debug\net9.0-windows\Mineswiper.dll
+C:\Users\Drake\source\repos\Mineswiper\bin\Debug\net9.0-windows\Mineswiper.pdb
+C:\Users\Drake\source\repos\Mineswiper\obj\Debug\net9.0-windows\Mineswiper.Form1.resources
+C:\Users\Drake\source\repos\Mineswiper\obj\Debug\net9.0-windows\Mineswiper.csproj.GenerateResource.cache
+C:\Users\Drake\source\repos\Mineswiper\obj\Debug\net9.0-windows\Mineswiper.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Drake\source\repos\Mineswiper\obj\Debug\net9.0-windows\Mineswiper.AssemblyInfoInputs.cache
+C:\Users\Drake\source\repos\Mineswiper\obj\Debug\net9.0-windows\Mineswiper.AssemblyInfo.cs
+C:\Users\Drake\source\repos\Mineswiper\obj\Debug\net9.0-windows\Mineswiper.csproj.CoreCompileInputs.cache
+C:\Users\Drake\source\repos\Mineswiper\obj\Debug\net9.0-windows\Mineswiper.sourcelink.json
+C:\Users\Drake\source\repos\Mineswiper\obj\Debug\net9.0-windows\Mineswiper.dll
+C:\Users\Drake\source\repos\Mineswiper\obj\Debug\net9.0-windows\refint\Mineswiper.dll
+C:\Users\Drake\source\repos\Mineswiper\obj\Debug\net9.0-windows\Mineswiper.pdb
+C:\Users\Drake\source\repos\Mineswiper\obj\Debug\net9.0-windows\Mineswiper.genruntimeconfig.cache
+C:\Users\Drake\source\repos\Mineswiper\obj\Debug\net9.0-windows\ref\Mineswiper.dll
