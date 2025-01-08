@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Drake\\source\\repos\\Mineswiper\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Drake\\source\\repos\\Mineswiper\\MyBlazorApp\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MyBlazorApp\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Drake\\source\\repos\\Mineswiper\\Tile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Tile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Drake\\source\\repos\\Mineswiper\\MyBlazorApp\\MyBlazorApp.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MyBlazorApp\\MyBlazorApp.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Drake\\source\\repos\\Mineswiper\\Generator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Generator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Drake\\source\\repos\\Mineswiper\\MainForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MainForm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Drake\\source\\repos\\Mineswiper\\Minesweeper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Minesweeper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -27,27 +35,53 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "MyBlazorApp.csproj",
-              "DocumentMoniker": "C:\\Users\\Drake\\source\\repos\\Mineswiper\\MyBlazorApp\\MyBlazorApp.csproj",
-              "RelativeDocumentMoniker": "MyBlazorApp\\MyBlazorApp.csproj",
-              "ToolTip": "C:\\Users\\Drake\\source\\repos\\Mineswiper\\MyBlazorApp\\MyBlazorApp.csproj",
-              "RelativeToolTip": "MyBlazorApp\\MyBlazorApp.csproj",
+              "Title": "Generator.cs",
+              "DocumentMoniker": "C:\\Users\\Drake\\source\\repos\\Mineswiper\\Generator.cs",
+              "RelativeDocumentMoniker": "Generator.cs",
+              "ToolTip": "C:\\Users\\Drake\\source\\repos\\Mineswiper\\Generator.cs",
+              "RelativeToolTip": "Generator.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-08T18:59:02.721Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainForm.cs",
+              "DocumentMoniker": "C:\\Users\\Drake\\source\\repos\\Mineswiper\\MainForm.cs",
+              "RelativeDocumentMoniker": "MainForm.cs",
+              "ToolTip": "C:\\Users\\Drake\\source\\repos\\Mineswiper\\MainForm.cs",
+              "RelativeToolTip": "MainForm.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-01-07T23:02:07.994Z",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-08T18:59:01.348Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Minesweeper.cs",
+              "DocumentMoniker": "C:\\Users\\Drake\\source\\repos\\Mineswiper\\Minesweeper.cs",
+              "RelativeDocumentMoniker": "Minesweeper.cs",
+              "ToolTip": "C:\\Users\\Drake\\source\\repos\\Mineswiper\\Minesweeper.cs",
+              "RelativeToolTip": "Minesweeper.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-08T18:59:00.353Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Drake\\source\\repos\\Mineswiper\\MyBlazorApp\\Program.cs",
-              "RelativeDocumentMoniker": "MyBlazorApp\\Program.cs",
-              "ToolTip": "C:\\Users\\Drake\\source\\repos\\Mineswiper\\MyBlazorApp\\Program.cs",
-              "RelativeToolTip": "MyBlazorApp\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAASAAAAAAAAAA==",
+              "Title": "Tile.cs",
+              "DocumentMoniker": "C:\\Users\\Drake\\source\\repos\\Mineswiper\\Tile.cs",
+              "RelativeDocumentMoniker": "Tile.cs",
+              "ToolTip": "C:\\Users\\Drake\\source\\repos\\Mineswiper\\Tile.cs*",
+              "RelativeToolTip": "Tile.cs*",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-07T22:41:46.46Z",
+              "WhenOpened": "2025-01-08T18:58:58.248Z",
               "EditorCaption": ""
             }
           ]
