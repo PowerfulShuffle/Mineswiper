@@ -7,12 +7,20 @@
       "RelativeMoniker": "D:0:0:{5F27E396-3386-4B31-B1C2-043A49CF7149}|Mineswiper.csproj|solutionrelative:mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5F27E396-3386-4B31-B1C2-043A49CF7149}|Mineswiper.csproj|c:\\users\\drake\\source\\repos\\mineswiper\\mainform_toolstrip.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5F27E396-3386-4B31-B1C2-043A49CF7149}|Mineswiper.csproj|solutionrelative:mainform_toolstrip.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{5F27E396-3386-4B31-B1C2-043A49CF7149}|Mineswiper.csproj|c:\\users\\drake\\source\\repos\\mineswiper\\minesweeper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5F27E396-3386-4B31-B1C2-043A49CF7149}|Mineswiper.csproj|solutionrelative:minesweeper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F27E396-3386-4B31-B1C2-043A49CF7149}|Mineswiper.csproj|c:\\users\\drake\\source\\repos\\mineswiper\\board.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F27E396-3386-4B31-B1C2-043A49CF7149}|Mineswiper.csproj|solutionrelative:board.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F27E396-3386-4B31-B1C2-043A49CF7149}|Mineswiper.csproj|c:\\users\\drake\\source\\repos\\mineswiper\\tile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F27E396-3386-4B31-B1C2-043A49CF7149}|Mineswiper.csproj|solutionrelative:tile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F27E396-3386-4B31-B1C2-043A49CF7149}|Mineswiper.csproj|c:\\users\\drake\\source\\repos\\mineswiper\\mainform_toolstrip.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F27E396-3386-4B31-B1C2-043A49CF7149}|Mineswiper.csproj|solutionrelative:mainform_toolstrip.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,13 +38,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "MainForm_ToolStrip.cs",
               "DocumentMoniker": "C:\\Users\\Drake\\source\\repos\\Mineswiper\\MainForm_ToolStrip.cs",
               "RelativeDocumentMoniker": "MainForm_ToolStrip.cs",
               "ToolTip": "C:\\Users\\Drake\\source\\repos\\Mineswiper\\MainForm_ToolStrip.cs",
               "RelativeToolTip": "MainForm_ToolStrip.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA8AAAA0AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwA0AAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-08T21:33:19.813Z",
               "EditorCaption": ""
@@ -49,22 +57,48 @@
               "RelativeDocumentMoniker": "MainForm.cs",
               "ToolTip": "C:\\Users\\Drake\\source\\repos\\Mineswiper\\MainForm.cs",
               "RelativeToolTip": "MainForm.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACoAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAYwBoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-08T19:11:39.594Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "Minesweeper.cs",
               "DocumentMoniker": "C:\\Users\\Drake\\source\\repos\\Mineswiper\\Minesweeper.cs",
               "RelativeDocumentMoniker": "Minesweeper.cs",
               "ToolTip": "C:\\Users\\Drake\\source\\repos\\Mineswiper\\Minesweeper.cs",
               "RelativeToolTip": "Minesweeper.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAACUAAAAAAAAAAAAowCoAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-08T19:11:17.958Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Board.cs",
+              "DocumentMoniker": "C:\\Users\\Drake\\source\\repos\\Mineswiper\\Board.cs",
+              "RelativeDocumentMoniker": "Board.cs",
+              "ToolTip": "C:\\Users\\Drake\\source\\repos\\Mineswiper\\Board.cs",
+              "RelativeToolTip": "Board.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABgAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-09T20:27:23.099Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Tile.cs",
+              "DocumentMoniker": "C:\\Users\\Drake\\source\\repos\\Mineswiper\\Tile.cs",
+              "RelativeDocumentMoniker": "Tile.cs",
+              "ToolTip": "C:\\Users\\Drake\\source\\repos\\Mineswiper\\Tile.cs",
+              "RelativeToolTip": "Tile.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAYwCoAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-10T12:08:50.523Z",
               "EditorCaption": ""
             }
           ]

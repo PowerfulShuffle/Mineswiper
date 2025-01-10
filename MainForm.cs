@@ -8,34 +8,33 @@ using System.Windows.Forms;
 
 namespace Mineswiper
 {
-    internal sealed partial class MainForm : Form
+    public sealed partial class MineForm : Form
     {
-        BufferedGraphics BufferedGraphics;
-        Rectangle _boardSpace;
-        Rectangle BoardSpace { get { return _boardSpace; } set 
-            {
-                if (value != new Rectangle()) _boardSpace = value;
-                else _boardSpace.Size = new Size(this.Width/2, this.Height/2);
-                this.Invalidate();
-            } 
-        }
-        public MainForm()
+        BufferedGraphics bufferedGraphics;
+        Label BoardSpace;
+        Minesweeper minesweeper;
+        public MineForm()
         {
             this.Text = "Mineswiper Prototype";
             this.WindowState = FormWindowState.Maximized;
-            BufferedGraphics = BufferedGraphicsManager.Current.Allocate(this.CreateGraphics(), this.DisplayRectangle);
+            this.MinimumSize = new(230, 100);
+            BoardSpace = new();
+            BoardSpace.BackColor = Color.White;
+            BoardSpace.Bounds = new Rectangle(30, 80, 50, 50);
+            bufferedGraphics = BufferedGraphicsManager.Current.Allocate(this.BoardSpace.CreateGraphics(), this.DisplayRectangle);
+            this.Controls.Add(BoardSpace);
+            minesweeper = new(this);
 
-            BoardSpace = new(50,50,50,50);
-            Minesweeper m = new();
-
+            mainButton = new();
             SetToolStrip();
 
-            this.Resize += (object? o, EventArgs ea) => BoardSpace = new();
-            this.Paint += (object? o, PaintEventArgs ea) =>
+            this.Resize += (object? o, EventArgs ea) => { BoardSpace.Size = new Size(this.Width / 2, this.Height / 2); this.BoardSpace.Invalidate(); };
+            this.BoardSpace.Paint += (object? o, PaintEventArgs ea) =>
             {
-                BufferedGraphics.Graphics.Clear(Color.LightGray);
-                BufferedGraphics.Graphics.FillRectangle(Brushes.Red, BoardSpace);
-                BufferedGraphics.Render();
+                bufferedGraphics.Graphics.Clear(Color.Pink);
+                minesweeper.board.Draw(bufferedGraphics.Graphics, BoardSpace.Bounds);
+                bufferedGraphics.Graphics.FillRectangle(Brushes.Yellow, 100, 100, 100, 100);
+                bufferedGraphics.Render();
             };
         }
     }

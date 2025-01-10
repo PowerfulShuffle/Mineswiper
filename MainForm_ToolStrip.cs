@@ -4,18 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.ComponentModel;
 
 namespace Mineswiper
 {
-    internal sealed partial class MainForm : Form
+    public sealed partial class MineForm : Form
     {
+        public ToolStripButton_Adjusted mainButton;
         private void SetToolStrip()
         {
-
             ToolStripContainer toolStripContainer = new(); //container setup
             toolStripContainer.Dock = DockStyle.Top;
-            toolStripContainer.Height = 25;
-
+            toolStripContainer.Height = 50;
 
             ToolStripDropDownButton File = new(); //File
             File.Text = "File";
@@ -40,15 +40,24 @@ namespace Mineswiper
             Mode.Text = "Mode";
             ToolStripDropDown Mode_DD = new();
             Mode.DropDown = Mode_DD;
-            Mode_DD.Items.Add(GetButton("Play", () => MessageBox.Show("")));
-            Mode_DD.Items.Add(GetButton("Analyse", () => MessageBox.Show("")));
-            Mode_DD.Items.Add(GetButton("Build", () => MessageBox.Show("")));
+            Mode_DD.Items.Add(GetButton("Play", () => minesweeper.Mode = Modes.Play));
+            Mode_DD.Items.Add(GetButton("Analyse", () => minesweeper.Mode = Modes.Analyse));
+            Mode_DD.Items.Add(GetButton("Build", () => minesweeper.Mode = Modes.Build));
 
             ToolStrip toolStrip = new(); // add main buttons
-            toolStrip.Items.Add(GetButton("New", () => MessageBox.Show("")));
+            toolStrip.GripStyle = ToolStripGripStyle.Hidden;
             toolStrip.Items.Add(File);
             toolStrip.Items.Add(Edit);
             toolStrip.Items.Add(Mode);
+
+            mainButton.Padding = new Padding(0);
+            mainButton.AutoSize = false;
+            mainButton.Size = new Size(45, 45);
+            mainButton.TextAlign = ContentAlignment.MiddleCenter;
+            mainButton.Font = new Font("", 25, FontStyle.Bold);
+            mainButton.Click += (object? o, EventArgs mea) => MessageBox.Show($"{this.Size}");
+
+            toolStrip.Items.Add(mainButton);
 
             toolStripContainer.TopToolStripPanel.Controls.Add(toolStrip);//finish stuff
 
@@ -62,6 +71,29 @@ namespace Mineswiper
                 res.Click += (object? o, EventArgs mea) => Function();
                 return res;
             }
+        }
+    }
+
+    public class ToolStripButton_Adjusted : ToolStripButton
+    {
+        private Color _color;
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public Color Color
+        {
+            get { return _color; }
+            set { _color = value; this.Invalidate(); }
+        }
+        public ToolStripButton_Adjusted()
+        {
+            Color = Color.DarkSlateGray;
+        }
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            StringFormat sf = new StringFormat();
+            sf.Alignment = StringAlignment.Center;
+            sf.LineAlignment = StringAlignment.Center;
+            e.Graphics.DrawString("⯄", new Font("Verdana", 30, FontStyle.Bold), new SolidBrush(Color), new Rectangle(this.Height/24, this.Height/18, this.Width, this.Height), sf);
         }
     }
 }
