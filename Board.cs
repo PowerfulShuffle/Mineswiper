@@ -97,7 +97,7 @@ namespace Mineswiper
             foreach (Tile t in Grid) if (t.State == States.Hidden) t.State = States.Flagged;
             return true;
         }
-        public virtual void Draw(Graphics gr, Rectangle r, Point p, double z)
+        public virtual void Draw(Graphics gr, Rectangle r, Point p, double z, Modes mode, PlayState playstate)
         {
             TileSize = new Size(Math.Max(1, r.Width / Dimensions[0]), Math.Max(1, r.Height / Dimensions[1]));
 
@@ -122,13 +122,24 @@ namespace Mineswiper
                                 (int)(((double)y + 0.54) * TileSize.Height)),
                             sf);
                     }
+                    if (playstate == PlayState.Lost && mode == Modes.Play && this[x,y].IsWrong)
+                    {
+                        gr.DrawLine(new Pen(color: Color.Red,
+                            (int)((double)Math.Min(TileSize.Width,TileSize.Height) * 0.1)),
+                            tilespace.Location + TileSize/10,
+                            tilespace.Location + tilespace.Size - TileSize/10);
+                        gr.DrawLine(new Pen(color: Color.Red,
+                            (int)((double)Math.Min(TileSize.Width, TileSize.Height) * 0.1)),
+                            new Point(tilespace.X + TileSize.Width / 10, tilespace.Y + tilespace.Height - TileSize.Height / 10),
+                            new Point(tilespace.X + tilespace.Height - TileSize.Width / 10, tilespace.Y + TileSize.Height / 10));
+                    }
 
                     /*gr.DrawImage(TexturesBase[(int)((Tile)Grid.GetValue(x, y)).State],
                     new Rectangle(r.Location + new Size(x * TileSize.Width, y * TileSize.Height), TileSize));*/
                 }
         }
 
-        public virtual int? TryPointToTupleToIndex(Point p, Rectangle r, Point camPos, double camZoom)
+        public virtual Tile? TryPointToTupleToIndexToTile(Point p, Rectangle r, Point camPos, double camZoom)
         {
             if (!r.Contains(p)) return null;
             switch (Dimensions.Length)
@@ -138,7 +149,7 @@ namespace Mineswiper
                 case 2:
                     int x = (p.X - r.X) / TileSize.Width;
                     int y = (p.Y - r.Y) / TileSize.Height;
-                    if (x >= 0 && x < Dimensions[0] && y >= 0 && y < Dimensions[1]) return (x + Dimensions[0] * y);
+                    if (x >= 0 && x < Dimensions[0] && y >= 0 && y < Dimensions[1]) return Grid[x + Dimensions[0] * y];
                     return null;
                 case 3:
                     return null;
@@ -149,7 +160,7 @@ namespace Mineswiper
         public virtual void TexturesBase_Reset(string foldername)
         {
             TexturesBase.Clear();
-            for (int i = -2; i <= 8; i++) TexturesBase.Add(i, GetImage(i.ToString() + ".png"));
+            for (int i = -3; i <= 8; i++) TexturesBase.Add(i, GetImage(i.ToString() + ".png"));
 
             Image GetImage(string filename)
             {

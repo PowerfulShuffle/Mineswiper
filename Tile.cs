@@ -12,13 +12,22 @@ namespace Mineswiper
         public States State;
         public List<Tile> Neighbors;
         public Color Highlight;
-        public bool IsWrong { get { return (State == States.Flagged && !HasMine) || (State == States.Mine); } }
+        public bool IsWrong { get { return (State == States.Flagged && !HasMine); } }
         public int AdjacentMines { get
             {
                 int mines = 0;
                 foreach (Tile t in Neighbors) if (t.HasMine) mines++;
                 return mines;
             } 
+        }
+        public int AdjacentFlags
+        {
+            get
+            {
+                int flags = 0;
+                foreach (Tile t in Neighbors) if (t.State == States.Flagged) flags++;
+                return flags;
+            }
         }
         public Tile() 
         {
@@ -27,17 +36,22 @@ namespace Mineswiper
             Neighbors = [];
         }
 
-        public PlayState Reveal() //returns false iff reveals bomb
+        public PlayState Reveal() //returns playstate after revealing 
         {
-            if (State != States.Hidden) return PlayState.Playing;
-            if (HasMine) { State = States.Mine; return PlayState.Done; }
+            if (State != States.Hidden && State != States.Flagged) return PlayState.Playing;
+            if (HasMine) { State = States.Mine; return PlayState.Lost; }
             else 
             { 
                 State = (States)AdjacentMines;
                 if (State == States.Zero) foreach (Tile t in Neighbors) t.Reveal();
                 return PlayState.Playing; 
             }
-
+        }
+        public PlayState Chord() //returns playstate after revealing 
+        {
+            if ((int)State <= 0) throw new Exception();
+            if ((int)State == AdjacentFlags) foreach (Tile tile in Neighbors) if (tile.State != States.Flagged) if (tile.Reveal() == PlayState.Lost) return PlayState.Lost;
+            return PlayState.Playing;
         }
 
         public void Splash()

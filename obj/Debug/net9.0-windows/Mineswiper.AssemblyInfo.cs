@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Mineswiper")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+de9685861017d7cb17382879c53f38599cd58d09")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fa3874cbe5421b6f60f7097a65bbd012c2aa0a96")]
 [assembly: System.Reflection.AssemblyProductAttribute("Mineswiper")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Mineswiper")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -51,7 +51,7 @@ namespace Mineswiper
             SelectedGenerator = Generators.Random;
             CurrentPlayState = PlayState.FirstClick;
             MinecountEnabled = true;
-            board = new Board(new int[] { 9, 9 }, 10);
+            board = new Board(new int[] { 30, 16 }, 99);
 
             Mode = Modes.Play;
             //MainButtonPress();
@@ -79,12 +79,42 @@ namespace Mineswiper
             switch (Mode)
             {
                 case Modes.Play:
-                    if ((CurrentPlayState == PlayState.Playing || CurrentPlayState == PlayState.FirstClick)  && tile.State == States.Hidden) 
+                    if (CurrentPlayState == PlayState.Playing || CurrentPlayState == PlayState.FirstClick)
                     { 
-                        CurrentPlayState = tile.Reveal();
-                        if (board.CheckCompletion()) CurrentPlayState = PlayState.Done;
-                        Parent?.UpdateBoard();
-                        break;
+                        if (tile.State == States.Hidden)
+                        {
+                            CurrentPlayState = tile.Reveal();
+                            if (CurrentPlayState == PlayState.Playing && board.CheckCompletion()) CurrentPlayState = PlayState.Won;
+                            if (CurrentPlayState == PlayState.Lost) foreach (Tile t in board.Grid) if (t.HasMine) t.State = States.Mine;
+                            Parent?.UpdateBoard();
+                            break;
+                        }
+                        if ((int)tile.State > 0)
+                        {
+                            CurrentPlayState = tile.Chord();
+                            if (CurrentPlayState == PlayState.Playing && board.CheckCompletion()) CurrentPlayState = PlayState.Won;
+                            if (CurrentPlayState == PlayState.Lost) foreach (Tile t in board.Grid) if (t.HasMine) t.State = States.Mine;
+                            Parent?.UpdateBoard();
+                            break;
+                        }
+                    }
+                    break;
+                case Modes.Analyse: break;
+                case Modes.Build: break;
+                case Modes.Auto:
+                default: { MessageBox.Show($"ERROR 1c MODE {Mode} INVALID"); return; }
+            }
+        }
+
+        public void RightClick(Tile tile)
+        {
+            switch (Mode)
+            {
+                case Modes.Play:
+                    if ((CurrentPlayState == PlayState.Playing || CurrentPlayState == PlayState.FirstClick))
+                    {
+                        if (tile.State == States.Hidden) { tile.State = States.Flagged; Parent?.UpdateBoard(); break; }
+                        if (tile.State == States.Flagged) { tile.State = States.Hidden; Parent?.UpdateBoard(); break; }
                     }
 
                     break;
@@ -120,7 +150,8 @@ namespace Mineswiper
     {
         FirstClick = 0,
         Playing = 1,
-        Done = 2,
-        Review = 3
+        Won = 2,
+        Lost = 3,
+        Review = 4
     }
 }

@@ -46,15 +46,17 @@ namespace Mineswiper
             this.Paint += (object? o, PaintEventArgs pea) => UpdateBoard();
             this.MouseClick += (object? o, MouseEventArgs mea) =>
             {
-                int? tileindex = minesweeper.board.TryPointToTupleToIndex(mea.Location, CurrentSpace, CamPos, CamZoom);
-                if (tileindex != null)
+                Tile? tile = minesweeper.board.TryPointToTupleToIndexToTile(mea.Location, CurrentSpace, CamPos, CamZoom);
+                if (tile != null)
                 {
                     switch (mea.Button)
                     {
                         case MouseButtons.Left:
-                            minesweeper.LeftClick(minesweeper.board.Grid[(int)tileindex]);
+                            minesweeper.LeftClick(tile);
                             break;
-                        case MouseButtons.Right: break;
+                        case MouseButtons.Right:
+                            minesweeper.RightClick(tile);
+                            break;
                         case MouseButtons.Middle: break;
                         default: MessageBox.Show("WARNING MOUSE BUTTON NOT IDENTIFIED"); break;
                     }
@@ -68,7 +70,7 @@ namespace Mineswiper
             bufferedGraphics.Graphics.Clear(Color.Lime);
             bufferedGraphics.Graphics.FillRectangle(Brushes.LimeGreen, BoardSpace);
             CurrentSpace = FixRectangle(BoardSpace, minesweeper.board.Dimensions);
-            minesweeper.board.Draw(bufferedGraphics.Graphics, CurrentSpace, CamPos, CamZoom);
+            minesweeper.board.Draw(bufferedGraphics.Graphics, CurrentSpace, CamPos, CamZoom, minesweeper.Mode, minesweeper.CurrentPlayState);
             bufferedGraphics.Render();
 
             Rectangle FixRectangle(Rectangle rect, int[] dims)
