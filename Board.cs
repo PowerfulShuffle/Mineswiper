@@ -24,12 +24,14 @@ namespace Mineswiper
         public readonly Tile[] Grid;
         public int Minecount;
 
+
         public Board(int[] dim, int m)
         {
             Dimensions = dim;
             Grid = new Tile[Product(Dimensions)];
             Minecount = m;
             for(int i = 0; i < Grid.Length; i++) Grid[i] = new Tile();
+            SetNeighbors();
             TexturesBase = [];
             TexturesResized = [];
             TexturesBase_Reset("Textures");
@@ -60,7 +62,40 @@ namespace Mineswiper
 
         public virtual void SetNeighbors()
         {
+            switch (Dimensions.Length)
+            {
+                case 1: break;
 
+                case 2:
+                    for(int x = 0; x < Dimensions[0]; x++) for(int y = 0; y < Dimensions[1]; y++)
+                        {
+                            Tile tile = this[x, y];
+                            if (x != 0 && x != Dimensions[0] - 1 && y != 0 && y != Dimensions[1] - 1) //case central cells
+                            {
+                                for (int i = -1; i < 2; i++) for (int j = -1; j < 2; j++)
+                                    {
+                                        tile.Neighbors.Add(this[x+i, y+j]);
+                                    }
+                            }
+                            else //case edge cells
+                            {
+                                for (int i = -1; i < 2; i++) for (int j = -1; j < 2; j++)
+                                    {
+                                        if (x + i >= 0 && x + i < Dimensions[0] && y + j >= 0 && y + j < Dimensions[1]) tile.Neighbors.Add(this[x + i, y + j]);
+                                    }
+                            }
+                        }
+                    break;
+
+                case 3: break;
+            }
+        }
+
+        public virtual bool CheckCompletion()
+        {
+            foreach (Tile t in Grid) if (t.State == States.Hidden && !t.HasMine) return false;
+            foreach (Tile t in Grid) if (t.State == States.Hidden) t.State = States.Flagged;
+            return true;
         }
         public virtual void Draw(Graphics gr, Rectangle r, Point p, double z)
         {
@@ -93,7 +128,7 @@ namespace Mineswiper
                 }
         }
 
-        public virtual System.Runtime.CompilerServices.ITuple? TryPointToTuple(Point p, Rectangle r, Point camPos, double camZoom)
+        public virtual int? TryPointToTupleToIndex(Point p, Rectangle r, Point camPos, double camZoom)
         {
             if (!r.Contains(p)) return null;
             switch (Dimensions.Length)
@@ -101,7 +136,10 @@ namespace Mineswiper
                 case 1:
                     return null;
                 case 2:
-                    return (1, 2);
+                    int x = (p.X - r.X) / TileSize.Width;
+                    int y = (p.Y - r.Y) / TileSize.Height;
+                    if (x >= 0 && x < Dimensions[0] && y >= 0 && y < Dimensions[1]) return (x + Dimensions[0] * y);
+                    return null;
                 case 3:
                     return null;
                 default: throw new Exception();

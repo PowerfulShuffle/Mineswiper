@@ -46,8 +46,19 @@ namespace Mineswiper
             this.Paint += (object? o, PaintEventArgs pea) => UpdateBoard();
             this.MouseClick += (object? o, MouseEventArgs mea) =>
             {
-                System.Runtime.CompilerServices.ITuple? coordinates = minesweeper.board.TryPointToTuple(mea.Location, CurrentSpace, CamPos, CamZoom);
-                if (coordinates != null) MessageBox.Show($"{coordinates}");
+                int? tileindex = minesweeper.board.TryPointToTupleToIndex(mea.Location, CurrentSpace, CamPos, CamZoom);
+                if (tileindex != null)
+                {
+                    switch (mea.Button)
+                    {
+                        case MouseButtons.Left:
+                            minesweeper.LeftClick(minesweeper.board.Grid[(int)tileindex]);
+                            break;
+                        case MouseButtons.Right: break;
+                        case MouseButtons.Middle: break;
+                        default: MessageBox.Show("WARNING MOUSE BUTTON NOT IDENTIFIED"); break;
+                    }
+                }
             };
 
             BoardSpace = new();

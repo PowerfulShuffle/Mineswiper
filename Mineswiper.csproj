@@ -11,6 +11,7 @@
   <ItemGroup>
     <None Remove="Textures\-1.png" />
     <None Remove="Textures\-2.png" />
+    <None Remove="Textures\-3.png" />
     <None Remove="Textures\0.png" />
     <None Remove="Textures\1.png" />
     <None Remove="Textures\2.png" />
@@ -36,6 +37,10 @@
     <EmbeddedResource Include="Textures\7.png" />
     <EmbeddedResource Include="Textures\8.png" />
     <EmbeddedResource Include="Textures\testimg.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Textures\-3.png" />
   </ItemGroup>
 
 </Project>

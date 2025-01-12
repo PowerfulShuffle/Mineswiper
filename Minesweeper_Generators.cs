@@ -11,6 +11,7 @@ namespace Mineswiper
         static readonly Random Rand = new();
         public void Generate_Random()
         {
+            foreach (Tile tile in board.Grid) tile.State = States.Hidden;
             if (MinecountEnabled)
             {
                 if (board.Minecount > board.Grid.Length) { MessageBox.Show($"WARNING 1 MINECOUNT ({board.Minecount}) EXCEEDS AVAILABLE TILES ({board.Grid.Length})"); return; }

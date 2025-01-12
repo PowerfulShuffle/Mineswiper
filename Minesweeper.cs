@@ -34,6 +34,7 @@ namespace Mineswiper
         }
         public Solvers SelectedSolver;
         public Generators SelectedGenerator;
+        public PlayState CurrentPlayState;
         public bool MinecountEnabled;
         private Board _board;
         public Board board
@@ -48,9 +49,12 @@ namespace Mineswiper
             Mode = Modes.Auto;
             SelectedSolver = Solvers.None;
             SelectedGenerator = Generators.Random;
+            CurrentPlayState = PlayState.FirstClick;
             MinecountEnabled = true;
             board = new Board(new int[] { 9, 9 }, 10);
+
             Mode = Modes.Play;
+            //MainButtonPress();
         }
 
         public void MainButtonPress()
@@ -59,6 +63,7 @@ namespace Mineswiper
             {
                 case Modes.Play:
                     Generate_Random();
+                    CurrentPlayState = PlayState.FirstClick;
                     Parent?.UpdateBoard();
                     break;
                 case Modes.Analyse: break;
@@ -66,6 +71,27 @@ namespace Mineswiper
                 case Modes.Auto:
                 default: { MessageBox.Show($"ERROR 1b MODE {Mode} INVALID"); return; }
 
+            }
+        }
+
+        public void LeftClick (Tile tile)
+        {
+            switch (Mode)
+            {
+                case Modes.Play:
+                    if ((CurrentPlayState == PlayState.Playing || CurrentPlayState == PlayState.FirstClick)  && tile.State == States.Hidden) 
+                    { 
+                        CurrentPlayState = tile.Reveal();
+                        if (board.CheckCompletion()) CurrentPlayState = PlayState.Done;
+                        Parent?.UpdateBoard();
+                        break;
+                    }
+
+                    break;
+                case Modes.Analyse: break;
+                case Modes.Build: break;
+                case Modes.Auto:
+                default: { MessageBox.Show($"ERROR 1c MODE {Mode} INVALID"); return; }
             }
         }
     }
@@ -88,5 +114,13 @@ namespace Mineswiper
     {
         None = 0,
         Random = 1
+    }
+
+    internal enum PlayState
+    {
+        FirstClick = 0,
+        Playing = 1,
+        Done = 2,
+        Review = 3
     }
 }
