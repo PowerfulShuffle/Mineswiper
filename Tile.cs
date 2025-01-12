@@ -17,7 +17,7 @@ namespace Mineswiper
         {
             HasMine = false;
             State = States.Hidden;
-            Neighbors = new List<Tile>();
+            Neighbors = [];
         }
     }
     internal enum States

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Mineswiper
 {
-    internal class Minesweeper
+    internal sealed partial class Minesweeper
     {
         public MineForm? Parent;
         private Modes _mode;
@@ -28,10 +28,13 @@ namespace Mineswiper
                     case Modes.Build:
                         if (Parent != null) Parent.mainButton.Color = Color.FromArgb(247, 37, 133);
                         break;
-                    default: { MessageBox.Show("ERROR"); return; }
+                    default: { MessageBox.Show($"ERROR 1a MODE {value} INVALID"); return; }
                 }
             }
         }
+        public Solvers SelectedSolver;
+        public Generators SelectedGenerator;
+        public bool MinecountEnabled;
         private Board _board;
         public Board board
         {
@@ -39,11 +42,29 @@ namespace Mineswiper
             set { _board = value; Parent?.Invalidate(); }
         }
 
-        public Minesweeper(MineForm? f) 
+        public Minesweeper(MineForm? f)
         {
             Parent = f;
             Mode = Modes.Auto;
-            board = new Board2D();
+            SelectedSolver = Solvers.None;
+            SelectedGenerator = Generators.Random;
+            MinecountEnabled = true;
+            board = new Board();
+            Mode = Modes.Play;
+        }
+
+        public void MainButtonPress()
+        {
+            switch (Mode)
+            {
+                case Modes.Play:
+                     break;
+                case Modes.Analyse: break;
+                case Modes.Build: break;
+                case Modes.Auto:
+                default: { MessageBox.Show($"ERROR 1b MODE {Mode} INVALID"); return; }
+
+            }
         }
     }
 
@@ -53,5 +74,17 @@ namespace Mineswiper
         Play = 1,
         Analyse = 2,
         Build = 3,
+    }
+
+    internal enum Solvers //ort, jsm, mso, qso, pla
+    {
+        None = 0,
+        Trivial = 1
+    }
+
+    internal enum Generators //ran, low/hi, mso, atl
+    {
+        None = 0,
+        Random = 1
     }
 }

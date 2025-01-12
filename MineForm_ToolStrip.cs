@@ -44,23 +44,30 @@ namespace Mineswiper
             Mode_DD.Items.Add(GetButton("Analyse", () => minesweeper.Mode = Modes.Analyse));
             Mode_DD.Items.Add(GetButton("Build", () => minesweeper.Mode = Modes.Build));
 
+            mainButton.AutoSize = false; //mainButton
+            mainButton.Size = new Size(45, 45);
+            mainButton.TextAlign = ContentAlignment.MiddleCenter;
+            mainButton.Font = new Font("", 25, FontStyle.Bold);
+            mainButton.Click += (object? o, EventArgs mea) => minesweeper.MainButtonPress();
+
+            ToolStripDropDownButton Generator = new(); //Engine
+            Generator.ForeColor = Color.FromArgb(58, 12, 163);
+            Generator.Text = "Random";
+            ToolStripDropDown Generator_DD = new();
+            Generator.DropDown = Generator_DD;
+            Generator_DD.Items.Add(GetButton("None", () => { minesweeper.SelectedGenerator = Generators.None; Generator.Text = "None"; }));
+            Generator_DD.Items.Add(GetButton("Random", () => { minesweeper.SelectedGenerator = Generators.Random; Generator.Text = "Random"; }));
+
+
             ToolStrip toolStrip = new(); // add main buttons
             toolStrip.GripStyle = ToolStripGripStyle.Hidden;
             toolStrip.Items.Add(File);
             toolStrip.Items.Add(Edit);
             toolStrip.Items.Add(Mode);
-
-            mainButton.Padding = new Padding(0);
-            mainButton.AutoSize = false;
-            mainButton.Size = new Size(45, 45);
-            mainButton.TextAlign = ContentAlignment.MiddleCenter;
-            mainButton.Font = new Font("", 25, FontStyle.Bold);
-            mainButton.Click += (object? o, EventArgs mea) => MessageBox.Show($"{this.Size}");
-
             toolStrip.Items.Add(mainButton);
+            toolStrip.Items.Add(Generator);
 
             toolStripContainer.TopToolStripPanel.Controls.Add(toolStrip);//finish stuff
-
             Controls.Add(toolStripContainer);
 
             ToolStripButton GetButton(string Text, Action Function)
@@ -90,7 +97,7 @@ namespace Mineswiper
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            StringFormat sf = new StringFormat();
+            StringFormat sf = new();
             sf.Alignment = StringAlignment.Center;
             sf.LineAlignment = StringAlignment.Center;
             e.Graphics.DrawString("⯄", new Font("Verdana", 30, FontStyle.Bold), new SolidBrush(Color), new Rectangle(this.Height/24, this.Height/18, this.Width, this.Height), sf);
