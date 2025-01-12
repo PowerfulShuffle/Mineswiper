@@ -49,7 +49,7 @@ namespace Mineswiper
             SelectedSolver = Solvers.None;
             SelectedGenerator = Generators.Random;
             MinecountEnabled = true;
-            board = new Board();
+            board = new Board(new int[] { 9, 9 }, 10);
             Mode = Modes.Play;
         }
 
@@ -58,7 +58,9 @@ namespace Mineswiper
             switch (Mode)
             {
                 case Modes.Play:
-                     break;
+                    Generate_Random();
+                    Parent?.UpdateBoard();
+                    break;
                 case Modes.Analyse: break;
                 case Modes.Build: break;
                 case Modes.Auto:

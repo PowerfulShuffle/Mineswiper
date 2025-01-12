@@ -21,6 +21,7 @@ namespace Mineswiper
                 this.Invalidate(); 
             }
         }
+        Rectangle CurrentSpace; //Denotes last drawn position of board
         Point _camPos;
         Point CamPos { get { return _camPos; } set { _camPos = value; this.Invalidate(); } }
         double _camZoom;
@@ -41,17 +42,32 @@ namespace Mineswiper
             minesweeper = new(this);
             SetToolStrip();
 
-            minesweeper = new(this);
             this.Resize += (object? o, EventArgs ea) => BoardSpace = new();
-            this.Paint += (object? o, PaintEventArgs ea) =>
+            this.Paint += (object? o, PaintEventArgs pea) => UpdateBoard();
+            this.MouseClick += (object? o, MouseEventArgs mea) =>
             {
-                bufferedGraphics.Graphics.Clear(Color.Lime);
-                bufferedGraphics.Graphics.FillRectangle(Brushes.LimeGreen, BoardSpace);
-                minesweeper.board.Draw(bufferedGraphics.Graphics, BoardSpace, CamPos, CamZoom);
-                bufferedGraphics.Render();
+                System.Runtime.CompilerServices.ITuple? coordinates = minesweeper.board.TryPointToTuple(mea.Location, CurrentSpace, CamPos, CamZoom);
+                if (coordinates != null) MessageBox.Show($"{coordinates}");
             };
 
             BoardSpace = new();
         }
+        public void UpdateBoard()
+        {
+            bufferedGraphics.Graphics.Clear(Color.Lime);
+            bufferedGraphics.Graphics.FillRectangle(Brushes.LimeGreen, BoardSpace);
+            CurrentSpace = FixRectangle(BoardSpace, minesweeper.board.Dimensions);
+            minesweeper.board.Draw(bufferedGraphics.Graphics, CurrentSpace, CamPos, CamZoom);
+            bufferedGraphics.Render();
+
+            Rectangle FixRectangle(Rectangle rect, int[] dims)
+            {
+                if (dims.Length != 2) MessageBox.Show("WARNING BOARD MAY NOT DRAW CORRECTLY");
+                int targettilelength = Math.Min(rect.Width / dims[0], rect.Height / dims[1]);
+                rect.Size = new Size(targettilelength * dims[0], targettilelength * dims[1]);
+                return rect;
+            }
+        }
+
     }
 }
