@@ -8,7 +8,7 @@ namespace Mineswiper
 {
     internal sealed partial class Minesweeper
     {
-        public MineForm? Parent;
+        public MainForm? Parent;
         private Modes _mode;
         public Modes Mode { get { return _mode; } set 
             {
@@ -34,7 +34,7 @@ namespace Mineswiper
         }
         public Solvers SelectedSolver;
         public Generators SelectedGenerator;
-        public PlayState CurrentPlayState;
+        public PlayStates PlayState;
         public bool MinecountEnabled;
         private Board _board;
         public Board board
@@ -43,15 +43,15 @@ namespace Mineswiper
             set { _board = value; Parent?.Invalidate(); }
         }
 
-        public Minesweeper(MineForm? f)
+        public Minesweeper(MainForm? f)
         {
             Parent = f;
             Mode = Modes.Auto;
             SelectedSolver = Solvers.None;
             SelectedGenerator = Generators.Random;
-            CurrentPlayState = PlayState.FirstClick;
+            PlayState = PlayStates.FirstClick;
             MinecountEnabled = true;
-            board = new Board(new int[] { 9, 9 }, 10);
+            board = new Board(new int[] { 30, 16 }, 99);
 
             Mode = Modes.Play;
             //MainButtonPress();
@@ -63,7 +63,7 @@ namespace Mineswiper
             {
                 case Modes.Play:
                     Generate_Random();
-                    CurrentPlayState = PlayState.FirstClick;
+                    PlayState = PlayStates.FirstClick;
                     Parent?.UpdateBoard();
                     break;
                 case Modes.Analyse: break;
@@ -79,21 +79,21 @@ namespace Mineswiper
             switch (Mode)
             {
                 case Modes.Play:
-                    if (CurrentPlayState == PlayState.Playing || CurrentPlayState == PlayState.FirstClick)
+                    if (PlayState == PlayStates.Playing || PlayState == PlayStates.FirstClick)
                     { 
                         if (tile.State == States.Hidden)
                         {
-                            CurrentPlayState = tile.Reveal();
-                            if (CurrentPlayState == PlayState.Playing && board.CheckCompletion()) CurrentPlayState = PlayState.Won;
-                            if (CurrentPlayState == PlayState.Lost) foreach (Tile t in board.Grid) if (t.HasMine) t.State = States.Mine;
+                            PlayState = tile.Reveal();
+                            if (PlayState == PlayStates.Playing && board.CheckCompletion()) PlayState = PlayStates.Won;
+                            if (PlayState == PlayStates.Lost) foreach (Tile t in board.Grid) if (t.HasMine) t.State = States.Mine;
                             Parent?.UpdateBoard();
                             break;
                         }
                         if ((int)tile.State > 0)
                         {
-                            CurrentPlayState = tile.Chord();
-                            if (CurrentPlayState == PlayState.Playing && board.CheckCompletion()) CurrentPlayState = PlayState.Won;
-                            if (CurrentPlayState == PlayState.Lost) foreach (Tile t in board.Grid) if (t.HasMine) t.State = States.Mine;
+                            PlayState = tile.Chord();
+                            if (PlayState == PlayStates.Playing && board.CheckCompletion()) PlayState = PlayStates.Won;
+                            if (PlayState == PlayStates.Lost) foreach (Tile t in board.Grid) if (t.HasMine) t.State = States.Mine;
                             Parent?.UpdateBoard();
                             break;
                         }
@@ -111,7 +111,7 @@ namespace Mineswiper
             switch (Mode)
             {
                 case Modes.Play:
-                    if ((CurrentPlayState == PlayState.Playing || CurrentPlayState == PlayState.FirstClick))
+                    if ((PlayState == PlayStates.Playing || PlayState == PlayStates.FirstClick))
                     {
                         if (tile.State == States.Hidden) { tile.State = States.Flagged; Parent?.UpdateBoard(); break; }
                         if (tile.State == States.Flagged) { tile.State = States.Hidden; Parent?.UpdateBoard(); break; }
@@ -126,7 +126,7 @@ namespace Mineswiper
         }
     }
 
-    internal enum Modes
+    public enum Modes
     {
         Auto = 0,
         Play = 1,
@@ -134,19 +134,19 @@ namespace Mineswiper
         Build = 3,
     }
 
-    internal enum Solvers //ort, jsm, mso, qso, pla
+    public enum Solvers //ort, jsm, mso, qso, pla
     {
         None = 0,
         Trivial = 1
     }
 
-    internal enum Generators //ran, low/hi, mso, atl
+    public enum Generators //ran, low/hi, mso, atl
     {
         None = 0,
         Random = 1
     }
 
-    internal enum PlayState
+    public enum PlayStates
     {
         FirstClick = 0,
         Playing = 1,

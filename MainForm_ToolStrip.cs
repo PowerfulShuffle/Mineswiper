@@ -8,7 +8,7 @@ using System.ComponentModel;
 
 namespace Mineswiper
 {
-    public sealed partial class MineForm : Form
+    public sealed partial class MainForm : Form
     {
         public ToolStripButton_Adjusted mainButton;
         private void SetToolStrip()

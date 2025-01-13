@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Mineswiper
 {
-    internal class Tile
+    public class Tile
     {
         public bool HasMine;
         public States State;
@@ -36,22 +36,22 @@ namespace Mineswiper
             Neighbors = [];
         }
 
-        public PlayState Reveal() //returns playstate after revealing 
+        public PlayStates Reveal() //returns playstate after revealing 
         {
-            if (State != States.Hidden && State != States.Flagged) return PlayState.Playing;
-            if (HasMine) { State = States.Mine; return PlayState.Lost; }
+            if (State != States.Hidden && State != States.Flagged) return PlayStates.Playing;
+            if (HasMine) { State = States.Mine; return PlayStates.Lost; }
             else 
             { 
                 State = (States)AdjacentMines;
                 if (State == States.Zero) foreach (Tile t in Neighbors) t.Reveal();
-                return PlayState.Playing; 
+                return PlayStates.Playing; 
             }
         }
-        public PlayState Chord() //returns playstate after revealing 
+        public PlayStates Chord() //returns playstate after revealing 
         {
             if ((int)State <= 0) throw new Exception();
-            if ((int)State == AdjacentFlags) foreach (Tile tile in Neighbors) if (tile.State != States.Flagged) if (tile.Reveal() == PlayState.Lost) return PlayState.Lost;
-            return PlayState.Playing;
+            if ((int)State == AdjacentFlags) foreach (Tile tile in Neighbors) if (tile.State != States.Flagged) if (tile.Reveal() == PlayStates.Lost) return PlayStates.Lost;
+            return PlayStates.Playing;
         }
 
         public void Splash()
@@ -60,7 +60,7 @@ namespace Mineswiper
             //foreach (Tile tile in Neighbors) tile.State = States.Seven;
         }
     }
-    internal enum States
+    public enum States
     {
         None = -4,
         Mine = -3,
