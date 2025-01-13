@@ -51,7 +51,7 @@ namespace Mineswiper
             SelectedGenerator = Generators.Random;
             CurrentPlayState = PlayState.FirstClick;
             MinecountEnabled = true;
-            board = new Board(new int[] { 30, 16 }, 99);
+            board = new Board(new int[] { 9, 9 }, 10);
 
             Mode = Modes.Play;
             //MainButtonPress();
